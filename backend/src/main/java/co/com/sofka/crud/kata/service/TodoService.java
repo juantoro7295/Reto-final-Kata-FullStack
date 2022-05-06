@@ -2,6 +2,8 @@ package co.com.sofka.crud.kata.service;
 
 import co.com.sofka.crud.kata.model.Todo;
 
+import java.util.Optional;
+
 public interface TodoService {
     //list
     Iterable<Todo> list();
@@ -16,7 +18,7 @@ public interface TodoService {
     String delete(Long id);
 
     //get
-    Todo getId(Long id);
+    Optional<Todo> getId(Long id);
 
 
 }
