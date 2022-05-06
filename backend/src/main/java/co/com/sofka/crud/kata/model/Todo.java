@@ -1,5 +1,6 @@
 package co.com.sofka.crud.kata.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,5 +21,14 @@ public class Todo {
     private String name;
     @Column(name = "completed")
     private Boolean completed;
+
+    @ManyToOne(
+            targetEntity = TodoList.class,
+            fetch = FetchType.LAZY,
+            optional = false
+    )
+    @JoinColumn(name = "id_todoList")
+    @JsonBackReference
+    private TodoList todoList;
 
 }
