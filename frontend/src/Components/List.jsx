@@ -9,10 +9,11 @@ const List = ({ id }) => {
   } = useContext(Store);
   const currentList = todo.list;
 
-  
+
   const show = currentList.filter(
-    (event) => event.id_groupList === id.id_groupList
+    (event) => event.id_todolist === id.id_todolist
   );
+  console.log(`lista: ${show}`)
 
   useEffect(() => {
     fetch(HOST_API + "/todo/list")
@@ -23,7 +24,7 @@ const List = ({ id }) => {
   }, [dispatch]);
 
   const onDelete = (id_todo) => {
-    fetch(HOST_API  + "/todo/delete/" + id_todo, {
+    fetch(HOST_API + "/todo/delete/" + id_todo, {
       method: "DELETE",
     }).then((list) => {
       dispatch({ type: "delete-item", id_todo });
@@ -38,10 +39,10 @@ const List = ({ id }) => {
       name: todo.name,
       id_todo: todo.id_todo,
       completed: event.target.checked,
-      id_groupList: todo.id_groupList,
+      id_todolist: todo.id_todolist,
     };
 
-    fetch(HOST_API + "/todo/update/"+ id_todo, {
+    fetch(HOST_API + "/todo/update", {
       method: "PUT",
       body: JSON.stringify(request),
       headers: {
@@ -53,7 +54,7 @@ const List = ({ id }) => {
         dispatch({ type: "update-item", item: todo });
       });
   };
-  
+
   const editOff = (param) => (param ? true : false);
 
   const decorationDone = {
@@ -65,9 +66,10 @@ const List = ({ id }) => {
       <table className="table table-striped table-hover">
         <thead>
           <tr>
-            <td>ID</td>
-            <td>¿Completado?</td>
+            <td>Codigo</td>
             <td>Tarea</td>
+            <td>¿ Completado ?</td>
+
           </tr>
         </thead>
         <tbody>
@@ -78,7 +80,9 @@ const List = ({ id }) => {
                 style={todo.completed ? decorationDone : {}}
               >
                 <th scope="row">{todo.id_todo}</th>
+                {console.log(todo.id_todo)}
                 <td>{todo.name}</td>
+                {console.log(todo.name)}
                 <td>
                   <input
                     className="form-check-input"
@@ -91,24 +95,31 @@ const List = ({ id }) => {
                   <div className="m-1">
                     {" "}
                     <button
-                      className="btn btn-dark btn-sm"
+                      className="btn btn-danger"
+                      id="buttonDelete"
                       onClick={() => onDelete(todo.id_todo)}
                     >
                       Eliminar
                     </button>
                   </div>
+                </td>
+                <td>
                   <div className="m-1">
                     <button
                       disabled={editOff(todo.completed)}
                       onClick={() => onEdit(todo)}
-                      className=" btn btn-primary btn-sm"
+                      className="btn btn-success"
+                      id="buttonEdit"
                     >
                       Editar
                     </button>
                   </div>
                 </td>
               </tr>
-            );
+            )
+
+
+
           })}
         </tbody>
       </table>

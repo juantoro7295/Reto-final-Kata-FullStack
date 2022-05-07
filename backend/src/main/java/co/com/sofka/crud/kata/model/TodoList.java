@@ -1,32 +1,35 @@
 package co.com.sofka.crud.kata.model;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "todoList")
+@Table(name = "todoList") //GroupList
 public class TodoList {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue
+    private Long id_todolist; // id_groupList
 
-    @Column(name = "nameList")
-    private String nameList;
+    private String name;
 
-    @OneToMany(
-            mappedBy = "todolist",
-            targetEntity = Todo.class,
-            fetch = FetchType.EAGER,
-            cascade = CascadeType.REMOVE)
-    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "listGroup") //id_groupList
     private List<Todo> todos;
+
+
+
+
+//    @OneToMany(
+//            mappedBy = "todolist",
+//            targetEntity = Todo.class,
+//            fetch = FetchType.EAGER,
+//            cascade = CascadeType.REMOVE)
+//    @JsonManagedReference
+//    private List<Todo> todos;
 }

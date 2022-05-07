@@ -17,6 +17,7 @@ public class TodoController {
     @Autowired
     private TodoServiceImpl todoserviceImpl;
 
+    @CrossOrigin
     @GetMapping("/list")
     public ResponseEntity<?> list() {
         Iterable<Todo> list = todoserviceImpl.list();
@@ -32,11 +33,11 @@ public class TodoController {
                 : new ResponseEntity<>("Cuerpo del todo Incorrecto", HttpStatus.NOT_FOUND);
     }
 
-    @PutMapping("/update/{id}")
-    public ResponseEntity<?> update(@RequestBody Todo todo, @PathVariable("id") Long id) {
-        Optional<Todo> todoExist = todoserviceImpl.getId(id);
+    @PutMapping("/update")
+    public ResponseEntity<?> update(@RequestBody Todo todo) {
+        Optional<Todo> todoExist = todoserviceImpl.getId(todo.getId_todo());
         return (todoExist.isPresent())
-                ? new ResponseEntity<>(todoserviceImpl.update(todo, id), HttpStatus.OK)
+                ? new ResponseEntity<>(todoserviceImpl.update(todo), HttpStatus.OK)
                 : new ResponseEntity<>("no existe el Todo", HttpStatus.NOT_FOUND);
     }
 

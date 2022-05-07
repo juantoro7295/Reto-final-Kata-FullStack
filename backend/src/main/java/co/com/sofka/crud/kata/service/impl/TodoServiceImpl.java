@@ -25,8 +25,8 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public Todo update(Todo todo, Long id) {
-        Todo todoIdExist = todoRepository.findById(id).orElse(null);
+    public Todo update(Todo todo) {
+        Todo todoIdExist = todoRepository.findById(todo.getId_todo()).orElse(null);
         todoIdExist.setName(todo.getName());
         todoIdExist.setCompleted(todo.getCompleted());
         return todoRepository.save(todoIdExist);

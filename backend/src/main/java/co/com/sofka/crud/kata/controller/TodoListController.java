@@ -33,11 +33,11 @@ public class TodoListController {
                 : new ResponseEntity<>("Cuerpo del todo Incorrecto", HttpStatus.NOT_FOUND);
     }
 
-    @PutMapping("/update/{id}")
-    public ResponseEntity<?> update(@RequestBody TodoList todoList, @PathVariable("id") Long id) {
-        Optional<TodoList> todoExist = todoListServiceImpl.getId(id);
+    @PutMapping("/update")
+    public ResponseEntity<?> update(@RequestBody TodoList todoList) {
+        Optional<TodoList> todoExist = todoListServiceImpl.getId(todoList.getId_todolist());
         return (todoExist.isPresent())
-                ? new ResponseEntity<>(todoListServiceImpl.update(todoList, id), HttpStatus.OK)
+                ? new ResponseEntity<>(todoListServiceImpl.update(todoList), HttpStatus.OK)
                 : new ResponseEntity<>("no existe el todoList", HttpStatus.NOT_FOUND);
     }
 

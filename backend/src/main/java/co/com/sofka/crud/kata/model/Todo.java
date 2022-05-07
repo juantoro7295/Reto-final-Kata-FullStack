@@ -1,13 +1,12 @@
 package co.com.sofka.crud.kata.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -15,20 +14,22 @@ import javax.persistence.*;
 public class Todo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column(name = "name")
+    @GeneratedValue
+    private Long id_todo;
+
     private String name;
-    @Column(name = "completed")
+
     private Boolean completed;
 
-    @ManyToOne(
-            targetEntity = TodoList.class,
-            fetch = FetchType.LAZY,
-            optional = false
-    )
-    @JoinColumn(name = "id_list")
-    @JsonBackReference
-    private TodoList todolist;
+    private Long listGroup;  // groupList
+
+//    @ManyToOne(
+//            targetEntity = TodoList.class,
+//            fetch = FetchType.LAZY,
+//            optional = false
+//    )
+//    @JoinColumn(name = "id_list")
+//    @JsonBackReference
+
 
 }

@@ -11,7 +11,7 @@ public interface TodoListService {
     TodoList save(TodoList todoList);
 
     //update
-    TodoList update(TodoList todoList, Long id);
+    TodoList update(TodoList todoList);
 
     //delete
     String delete(Long id);

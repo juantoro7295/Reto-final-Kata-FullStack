@@ -12,10 +12,10 @@ const FormListTodo = () => {
     event.preventDefault();
     const request = {
       name: state.name,
-      id_groupList: null,
+      id_todolist: null,
     };
-
-    if (state.name.trim().length === 0) {
+      console.log("este es mijo "+state.name)
+    if (state.name.length < 3) {
       let createAlert = document.getElementById("createAlert");
       createAlert.innerHTML = `<div class="alert alert-warning">
                 <h3>Ingresa un nombre a la lista no vacio</h3></div>`;

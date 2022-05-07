@@ -12,7 +12,7 @@ public interface TodoService {
     Todo save(Todo todo);
 
     //update
-    Todo update(Todo todo, Long id);
+    Todo update(Todo todo);
 
     //delete
     String delete(Long id);

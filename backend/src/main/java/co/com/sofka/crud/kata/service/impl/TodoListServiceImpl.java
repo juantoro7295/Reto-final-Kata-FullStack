@@ -24,9 +24,9 @@ public class TodoListServiceImpl implements TodoListService {
     }
 
     @Override
-    public TodoList update(TodoList todoList, Long id) {
-        TodoList todoListIdExist = todoListRepository.findById(id).orElse(null);
-        todoListIdExist.setNameList(todoList.getNameList());
+    public TodoList update(TodoList todoList) {
+        TodoList todoListIdExist = todoListRepository.findById(todoList.getId_todolist()).orElse(null);
+        todoListIdExist.setName(todoList.getName());
         return todoListRepository.save(todoListIdExist);
     }
 

@@ -1,4 +1,4 @@
-const reducer = (state, action) => {
+function reducer (state, action) {
     switch (action.type) {
         case "update-item":
             const todoUpItem = state.todo;
@@ -37,14 +37,14 @@ const reducer = (state, action) => {
             return { ...state, listTodo: { todoList: todoList, item: {} } };
 
         case "update-groupList":
-            const listTodos = state.groupList;
+            const listTodos = state.todoList;
             listTodos.list = action.list;
-            return { ...state, groupList: listTodos };
+            return { ...state, todoList: listTodos };
 
         case "delete-groupList":
             const listDelete = state.todo;
             const listUpdater = listDelete.list.filter((item) => {
-                return item.id_groupList !== action.id_groupList;
+                return item.id_todolist !== action.id_todolist;
             });
             listDelete.list = listUpdater;
             return { ...state, todo: listDelete };
