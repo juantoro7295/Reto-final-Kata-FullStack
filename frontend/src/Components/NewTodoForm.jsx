@@ -77,12 +77,12 @@ const NewTodoForm = ({ id }) => {
                 defaultValue={item.name}
             ></input>
             {item.id_todo && (
-                <button disabled={wihtOutTodo(state.name)} onClick={onEdit}>
+                <button class="btn btn-warning" disabled={wihtOutTodo(state.name)} onClick={onEdit}>
                     Actualizar
                 </button>
             )}
             {!item.id_todo && (
-                <button disabled={wihtOutTodo(state.name)} onClick={onAdd}>
+                <button class="btn btn-primary" disabled={wihtOutTodo(state.name)} onClick={onAdd}>
                     Crear
                 </button>
             )}

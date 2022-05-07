@@ -1,6 +1,8 @@
 import React, { useContext, useRef, useState } from "react";
 import { HOST_API, Store } from "../App";
+
 const FormListTodo = () => {
+
   const formRef = useRef(null);
   const {
     dispatch,
@@ -8,13 +10,14 @@ const FormListTodo = () => {
   } = useContext(Store);
   const item = todoList.item;
   const [state, setState] = useState(item);
+
   const onAdd = (event) => {
     event.preventDefault();
     const request = {
       name: state.name,
       id_groupList: null,
     };
-      console.log("este es mijo "+state.name)
+      
     if (state.name.length < 3) {
       let createAlert = document.getElementById("createAlert");
       createAlert.innerHTML = `<div class="alert alert-warning">
@@ -47,14 +50,14 @@ const FormListTodo = () => {
             <input
               type="text"
               name="name"
-              placeholder="Ingresa una nueva Lista de ToDo"
+              placeholder="Nueva Lista de ToDo"
               className="form-control"
               onChange={(event) => {
                 setState({ ...state, name: event.target.value });
               }}
             ></input>
             <button onClick={onAdd} className="btn btn-primary">
-              Agregar Nueva Lista
+              Agregar Lista
             </button>
           </div>
         </form>

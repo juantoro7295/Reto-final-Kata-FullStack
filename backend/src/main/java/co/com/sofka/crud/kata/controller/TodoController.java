@@ -1,5 +1,4 @@
 package co.com.sofka.crud.kata.controller;
-
 import co.com.sofka.crud.kata.model.Todo;
 import co.com.sofka.crud.kata.service.impl.TodoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

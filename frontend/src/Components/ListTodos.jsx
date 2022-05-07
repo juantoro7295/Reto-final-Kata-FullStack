@@ -37,13 +37,13 @@ const ListTodos = () => {
           <div className="card custom-card">
             <div className="m-2 rounded bkGrey" key={todosList.id_groupList}>
               <div className="m-2">
-                <h2>{todosList.name}</h2>
                 <button
-                  className="btn btn-outline-danger"
+                  class="btn btn-danger"
                   onClick={() => onDelete(todosList.id_groupList)}
                 >
                   Borrar Lista
                 </button>
+                <h2>{todosList.name}</h2>
               </div>
               <NewTodoForm id={todosList} />
               <List id={todosList} />

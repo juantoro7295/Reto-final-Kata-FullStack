@@ -9,7 +9,7 @@ const List = ({ id }) => {
   } = useContext(Store);
   const currentList = todo.list;
 
-  // filtro de listas por medio del id de TodoList
+  
   const show = currentList.filter(
     (event) => event.id_groupList === id.id_groupList
   );
@@ -54,9 +54,8 @@ const List = ({ id }) => {
         dispatch({ type: "update-item", item: todo });
       });
   };
-  /**
-   *  funcion para desactivar el boton editar en cuando este listo el ToDo
-   */
+ 
+
   const editOff = (param) => (param ? true : false);
 
   const decorationDone = {
@@ -68,9 +67,9 @@ const List = ({ id }) => {
       <table className="table table-striped table-hover">
         <thead>
           <tr>
-            <td>ID</td>
+            <td>codigo</td>
             <td>Tarea</td>
-            <td>¿Completado?</td>
+            <td>¿Terminado?</td>
           </tr>
         </thead>
         <tbody>
@@ -94,7 +93,7 @@ const List = ({ id }) => {
                   <div className="m-1">
                     {" "}
                     <button
-                      className="btn btn-dark btn-sm"
+                      className="btn btn-danger"
                       onClick={() => onDelete(todo.id_todo)}
                     >
                       Eliminar
@@ -104,7 +103,7 @@ const List = ({ id }) => {
                     <button
                       disabled={editOff(todo.completed)}
                       onClick={() => onEdit(todo)}
-                      className="por aca estoy loco btn btn-primary btn-sm"
+                      className="btn btn-warning"
                     >
                       Editar
                     </button>
