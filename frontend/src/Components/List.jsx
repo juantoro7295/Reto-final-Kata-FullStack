@@ -9,15 +9,14 @@ const List = ({ id }) => {
   } = useContext(Store);
   const currentList = todo.list;
 
-
+  // filtro de listas por medio del id de TodoList
   const show = currentList.filter(
-    (event) => event.id_todolist === id.id_todolist
+    (event) => event.id_groupList === id.id_groupList
   );
-  console.log(`lista: ${show}`)
 
   useEffect(() => {
     fetch(HOST_API + "/todo/list")
-      .then((response) => response.json())
+      .then((res) => res.json())
       .then((list) => {
         dispatch({ type: "update-list", list });
       });
@@ -34,12 +33,13 @@ const List = ({ id }) => {
   const onEdit = (todo) => {
     dispatch({ type: "edit-item", item: todo });
   };
+
   const onChange = (event, todo) => {
     const request = {
       name: todo.name,
       id_todo: todo.id_todo,
       completed: event.target.checked,
-      id_todolist: todo.id_todolist,
+      id_groupList: todo.id_groupList,
     };
 
     fetch(HOST_API + "/todo/update", {
@@ -54,7 +54,9 @@ const List = ({ id }) => {
         dispatch({ type: "update-item", item: todo });
       });
   };
-
+  /**
+   *  funcion para desactivar el boton editar en cuando este listo el ToDo
+   */
   const editOff = (param) => (param ? true : false);
 
   const decorationDone = {
@@ -66,10 +68,9 @@ const List = ({ id }) => {
       <table className="table table-striped table-hover">
         <thead>
           <tr>
-            <td>Codigo</td>
+            <td>ID</td>
             <td>Tarea</td>
-            <td>¿ Completado ?</td>
-
+            <td>¿Completado?</td>
           </tr>
         </thead>
         <tbody>
@@ -80,9 +81,7 @@ const List = ({ id }) => {
                 style={todo.completed ? decorationDone : {}}
               >
                 <th scope="row">{todo.id_todo}</th>
-                {console.log(todo.id_todo)}
                 <td>{todo.name}</td>
-                {console.log(todo.name)}
                 <td>
                   <input
                     className="form-check-input"
@@ -95,31 +94,24 @@ const List = ({ id }) => {
                   <div className="m-1">
                     {" "}
                     <button
-                      className="btn btn-danger"
-                      id="buttonDelete"
+                      className="btn btn-dark btn-sm"
                       onClick={() => onDelete(todo.id_todo)}
                     >
                       Eliminar
                     </button>
                   </div>
-                </td>
-                <td>
                   <div className="m-1">
                     <button
                       disabled={editOff(todo.completed)}
                       onClick={() => onEdit(todo)}
-                      className="btn btn-success"
-                      id="buttonEdit"
+                      className="por aca estoy loco btn btn-primary btn-sm"
                     >
                       Editar
                     </button>
                   </div>
                 </td>
               </tr>
-            )
-
-
-
+            );
           })}
         </tbody>
       </table>

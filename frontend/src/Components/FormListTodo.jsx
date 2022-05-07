@@ -12,7 +12,7 @@ const FormListTodo = () => {
     event.preventDefault();
     const request = {
       name: state.name,
-      id_todolist: null,
+      id_groupList: null,
     };
       console.log("este es mijo "+state.name)
     if (state.name.length < 3) {

@@ -18,9 +18,8 @@ const NewTodoForm = ({ id }) => {
             name: state.name,
             id_todo: null,
             completed: false,
-            listGroup: id.id_todolist,
+            id_groupList: id.id_groupList,
         };
-        console.log("dato izquierda: "+ request.listGroup + " dato rigth "+ id.id_todolist);
 
         fetch(HOST_API + "/todo/save", {
             method: "POST",
@@ -45,7 +44,7 @@ const NewTodoForm = ({ id }) => {
             name: state.name,
             id_todo: item.id_todo,
             completed: item.completed,
-            todolist: id.id_todolist,
+            id_groupList: id.id_groupList,
         };
         fetch(HOST_API + "/todo/update", {
             method: "PUT",

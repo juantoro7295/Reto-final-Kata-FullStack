@@ -44,7 +44,7 @@ function reducer (state, action) {
         case "delete-groupList":
             const listDelete = state.todo;
             const listUpdater = listDelete.list.filter((item) => {
-                return item.id_todolist !== action.id_todolist;
+                return item.id_groupList !== action.id_groupList;
             });
             listDelete.list = listUpdater;
             return { ...state, todo: listDelete };

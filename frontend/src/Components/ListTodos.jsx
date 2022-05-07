@@ -19,28 +19,28 @@ const ListTodos = () => {
   }, [dispatch]);
 
   
-  const onDelete = (id_todolist) => {
-    fetch(HOST_API + "/todolist/delete/"+id_todolist , {
+  const onDelete = (id_groupList) => {
+    fetch(HOST_API + "/todolist/delete/"+id_groupList , {
       method: "DELETE",
     }).then((list) => {
-      dispatch({ type: "delete-listTodos", id_todolist });
+      dispatch({ type: "delete-listTodos", id_groupList });
     });
 
     const deleteDiv = document.getElementById("rowList");
-    deleteDiv.removeChild(document.getElementById(id_todolist));
+    deleteDiv.removeChild(document.getElementById(id_groupList));
   };
 
   return lista.map((todosList) => {
     return (
-      <Fragment key={todosList.id_todolist}>
-        <div className="col-md-6 mb-2" id={todosList.id_todolist}>
+      <Fragment key={todosList.id_groupList}>
+        <div className="col-md-6 mb-2" id={todosList.id_groupList}>
           <div className="card custom-card">
-            <div className="m-2 rounded bkGrey" key={todosList.id_todolist}>
+            <div className="m-2 rounded bkGrey" key={todosList.id_groupList}>
               <div className="m-2">
                 <h2>{todosList.name}</h2>
                 <button
                   className="btn btn-outline-danger"
-                  onClick={() => onDelete(todosList.id_todolist)}
+                  onClick={() => onDelete(todosList.id_groupList)}
                 >
                   Borrar Lista
                 </button>

@@ -1,6 +1,5 @@
 package co.com.sofka.crud.kata.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -21,15 +20,6 @@ public class Todo {
 
     private Boolean completed;
 
-    private Long listGroup;  // groupList
-
-//    @ManyToOne(
-//            targetEntity = TodoList.class,
-//            fetch = FetchType.LAZY,
-//            optional = false
-//    )
-//    @JoinColumn(name = "id_list")
-//    @JsonBackReference
-
+    private Long id_groupList;
 
 }

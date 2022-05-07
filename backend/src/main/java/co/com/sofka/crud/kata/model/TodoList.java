@@ -9,27 +9,19 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "todoList") //GroupList
+@Table(name = "GroupList")
 public class TodoList {
 
     @Id
     @GeneratedValue
-    private Long id_todolist; // id_groupList
+    private Long id_groupList;
 
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "listGroup") //id_groupList
+    @JoinColumn(name = "id_groupList") //id_groupList
     private List<Todo> todos;
 
 
 
-
-//    @OneToMany(
-//            mappedBy = "todolist",
-//            targetEntity = Todo.class,
-//            fetch = FetchType.EAGER,
-//            cascade = CascadeType.REMOVE)
-//    @JsonManagedReference
-//    private List<Todo> todos;
 }

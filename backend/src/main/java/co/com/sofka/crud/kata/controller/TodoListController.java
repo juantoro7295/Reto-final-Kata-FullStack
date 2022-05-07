@@ -1,6 +1,4 @@
 package co.com.sofka.crud.kata.controller;
-
-import co.com.sofka.crud.kata.model.Todo;
 import co.com.sofka.crud.kata.model.TodoList;
 import co.com.sofka.crud.kata.service.impl.TodoListServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +33,7 @@ public class TodoListController {
 
     @PutMapping("/update")
     public ResponseEntity<?> update(@RequestBody TodoList todoList) {
-        Optional<TodoList> todoExist = todoListServiceImpl.getId(todoList.getId_todolist());
+        Optional<TodoList> todoExist = todoListServiceImpl.getId(todoList.getId_groupList());
         return (todoExist.isPresent())
                 ? new ResponseEntity<>(todoListServiceImpl.update(todoList), HttpStatus.OK)
                 : new ResponseEntity<>("no existe el todoList", HttpStatus.NOT_FOUND);
