@@ -27,8 +27,8 @@ public class Todo {
             fetch = FetchType.LAZY,
             optional = false
     )
-    @JoinColumn(name = "id_todoList")
+    @JoinColumn(name = "id_list")
     @JsonBackReference
-    private TodoList todoList;
+    private TodoList todolist;
 
 }

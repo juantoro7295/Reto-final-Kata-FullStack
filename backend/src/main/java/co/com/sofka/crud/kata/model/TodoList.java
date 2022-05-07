@@ -1,5 +1,6 @@
 package co.com.sofka.crud.kata.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +22,11 @@ public class TodoList {
     @Column(name = "nameList")
     private String nameList;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "id_todoList")
+    @OneToMany(
+            mappedBy = "todolist",
+            targetEntity = Todo.class,
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.REMOVE)
+    @JsonManagedReference
     private List<Todo> todos;
 }
