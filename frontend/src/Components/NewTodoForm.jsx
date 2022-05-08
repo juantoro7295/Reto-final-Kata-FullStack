@@ -2,6 +2,15 @@ import React, { useRef, useContext, useState } from "react";
 import { HOST_API } from "../App";
 import { Store } from "../App";
 
+/**
+ * Componente NewTodoForm
+ *
+ * @author Juan Pablo Toro Hurtado.
+ * @version 1.0.0
+ * @since 1.0.0
+ */
+
+
 const NewTodoForm = ({ id }) => {
     const formRef = useRef(null);
     const {
@@ -11,6 +20,10 @@ const NewTodoForm = ({ id }) => {
     const item = todo.item;
     const [state, setState] = useState(item);
 
+    /**
+     * Funcion que nos permite agregar un ToDo
+     * @param event 
+     */
     const onAdd = (event) => {
         event.preventDefault();
 
@@ -20,7 +33,7 @@ const NewTodoForm = ({ id }) => {
             completed: false,
             id_groupList: id.id_groupList,
         };
-
+        
         fetch(HOST_API + "/todo/save", {
             method: "POST",
             // mode: 'cors',
@@ -37,6 +50,10 @@ const NewTodoForm = ({ id }) => {
             });
     };
 
+    /**
+     *  Funcion que nos permite actualizar un ToDo
+     * @param  event 
+     */
     const onEdit = (event) => {
         event.preventDefault();
 
@@ -61,7 +78,11 @@ const NewTodoForm = ({ id }) => {
             });
     };
 
-
+    /**
+     * Funcion que nos permite inhabilitar el boton en el caso que no se encuentre nada en el input
+     * @param  name 
+     * @returns Boolean 
+     */
     const wihtOutTodo = (name) =>
         name === undefined || name.lenght === 0 ? true : false;
 

@@ -1,6 +1,14 @@
 import React, { useContext, useRef, useState } from "react";
 import { HOST_API, Store } from "../App";
 
+/**
+ * Componente FormList
+ *
+ * @author Juan Pablo Toro Hurtado.
+ * @version 1.0.0
+ * @since 1.0.0
+ */
+
 const FormListTodo = () => {
 
   const formRef = useRef(null);
@@ -11,6 +19,10 @@ const FormListTodo = () => {
   const item = todoList.item;
   const [state, setState] = useState(item);
 
+  /**
+   * Funcion que nos permite agregar una lista de ToDo
+   * @param event 
+   */
   const onAdd = (event) => {
     event.preventDefault();
     const request = {

@@ -2,6 +2,14 @@ import React, { useContext, useEffect } from "react";
 import { HOST_API } from "../App";
 import { Store } from "../App";
 
+/**
+ * Componente List
+ *
+ * @author Juan Pablo Toro Hurtado.
+ * @version 1.0.0
+ * @since 1.0.0
+ */
+
 const List = ({ id }) => {
   const {
     dispatch,
@@ -9,7 +17,9 @@ const List = ({ id }) => {
   } = useContext(Store);
   const currentList = todo.list;
 
-  
+  /**
+   * Nos permite filtrar listas a traves de el id
+   */
   const show = currentList.filter(
     (event) => event.id_groupList === id.id_groupList
   );
@@ -22,6 +32,11 @@ const List = ({ id }) => {
       });
   }, [dispatch]);
 
+  /**
+   * Funcion que nos permite eliminar un ToDo a traves del id
+   * @param  id_todo 
+   */
+
   const onDelete = (id_todo) => {
     fetch(HOST_API + "/todo/delete/" + id_todo, {
       method: "DELETE",
@@ -30,10 +45,21 @@ const List = ({ id }) => {
     });
   };
 
+  /**
+   * Funcion que nos permite editar un ToDo
+   * @param  todo 
+   */
+
   const onEdit = (todo) => {
     dispatch({ type: "edit-item", item: todo });
   };
 
+  
+  /**
+   * Funcion que nos permite modicar el estado en que se encuentra un ToDo
+   * @param  event 
+   * @param  todo 
+   */
   const onChange = (event, todo) => {
     const request = {
       name: todo.name,
@@ -55,9 +81,16 @@ const List = ({ id }) => {
       });
   };
  
-
+  /**
+   * Funcion que nos permite activar o desactivar el boton editar
+   * @param  param 
+   * @returns booleano 
+   */
   const editOff = (param) => (param ? true : false);
 
+  /**
+   * Efecto  visual para dar por completada una tarea (Raya El ToDo) 
+   */
   const decorationDone = {
     textDecoration: "line-through",
   };

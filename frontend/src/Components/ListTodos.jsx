@@ -3,6 +3,15 @@ import NewTodoForm from "./NewTodoForm";
 import { HOST_API, Store } from "../App";
 import List from "./List";
 
+/**
+ * Componente ListTodos
+ *
+ * @author Juan Pablo Toro Hurtado.
+ * @version 1.0.0
+ * @since 1.0.0
+ */
+
+
 const ListTodos = () => {
   const {
     dispatch,
@@ -18,7 +27,10 @@ const ListTodos = () => {
       });
   }, [dispatch]);
 
-  
+  /**
+   * Funcion que nos permite eliminar una Lista de ToDos
+   * @param  id_groupList 
+   */
   const onDelete = (id_groupList) => {
     fetch(HOST_API + "/todolist/delete/"+id_groupList , {
       method: "DELETE",
@@ -26,6 +38,9 @@ const ListTodos = () => {
       dispatch({ type: "delete-listTodos", id_groupList });
     });
 
+    /**
+     * Nos permite eliminar una columna de la lista de ToDo almacenada
+     */
     const deleteDiv = document.getElementById("rowList");
     deleteDiv.removeChild(document.getElementById(id_groupList));
   };

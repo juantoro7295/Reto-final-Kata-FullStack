@@ -1,3 +1,11 @@
+/**
+ * Funcion reducer
+ *
+ * @author Juan Pablo Toro Hurtado.
+ * @version 1.0.0
+ * @since 1.0.0
+ */
+
 function reducer (state, action) {
     switch (action.type) {
         case "update-item":
