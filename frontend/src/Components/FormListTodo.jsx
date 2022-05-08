@@ -58,8 +58,10 @@ const FormListTodo = () => {
       <div className="col-2"></div>
       <div className="col-8">
         <form ref={formRef}>
-          <div className="input-group mb-2">
+        <h1 id="listaTodos">Lista de ToDos</h1>
+          <div id="contenedorList" className="input-group mb-2">
             <input
+              id= "inputList"
               type="text"
               name="name"
               placeholder="Nueva Lista de ToDo"

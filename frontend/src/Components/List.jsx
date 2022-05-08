@@ -96,7 +96,7 @@ const List = ({ id }) => {
   };
 
   return (
-    <div className="m-2">
+    <div id="cuadro" className="m-2">
       <table className="table table-striped table-hover">
         <thead>
           <tr>
