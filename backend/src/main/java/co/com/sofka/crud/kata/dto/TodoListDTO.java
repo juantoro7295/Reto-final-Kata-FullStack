@@ -4,6 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.validation.annotation.Validated;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 
 /**
  *  DTO de TodoLIst
@@ -18,8 +23,12 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Validated
 public class TodoListDTO {
     private Long id_groupList;
 
+    @NotEmpty(message = "El nombre de la lista no puede ser vacia")
+    @Min(3)
+    @Max(100)
     private String name;
 }
