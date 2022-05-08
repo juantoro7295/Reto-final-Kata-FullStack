@@ -1,23 +1,23 @@
 package co.com.sofka.crud.kata.service;
-import co.com.sofka.crud.kata.model.TodoList;
 
-import java.util.Optional;
+import co.com.sofka.crud.kata.dto.TodoListDTO;
+import java.util.List;
 
 public interface TodoListService {
     //list
-    Iterable<TodoList> list();
+    List<TodoListDTO> list();
 
     //save
-    TodoList save(TodoList todoList);
+    TodoListDTO save(TodoListDTO todoListDTO);
 
     //update
-    TodoList update(TodoList todoList);
+    TodoListDTO update(TodoListDTO todoListDTO);
 
     //delete
     String delete(Long id);
 
     //get
-    Optional<TodoList> getId(Long id);
+    TodoListDTO getId(Long id);
 
 
 }

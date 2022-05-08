@@ -1,13 +1,13 @@
 package co.com.sofka.crud.kata.controller;
 
-import co.com.sofka.crud.kata.model.TodoList;
+import co.com.sofka.crud.kata.dto.TodoListDTO;
 import co.com.sofka.crud.kata.service.impl.TodoListServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
-import java.util.Optional;
 
 /**
  * ToDoList controlador - TodoListController
@@ -31,11 +31,11 @@ public class TodoListController {
     /**
      * Listar un ToDoList
      *
-     * @return list
+     * @return listDTO
      */
     @GetMapping("/list")
     public ResponseEntity<?> list() {
-        Iterable<TodoList> list = todoListServiceImpl.list();
+        List<TodoListDTO> list = todoListServiceImpl.list();
         return (list != null)
                 ? new ResponseEntity<>(list, HttpStatus.OK)
                 : new ResponseEntity<>("No hay nada en la lista", HttpStatus.NOT_FOUND);
@@ -44,27 +44,27 @@ public class TodoListController {
     /**
      * Guadar un todoList
      *
-     * @param todoList
-     * @return todoList
+     * @param todoListDTO
+     * @return todoListDTO
      */
     @PostMapping("/save")
-    public ResponseEntity<?> save(@RequestBody TodoList todoList) {
-        return (todoList != null)
-                ? new ResponseEntity<>(todoListServiceImpl.save(todoList), HttpStatus.OK)
+    public ResponseEntity<?> save(@RequestBody TodoListDTO todoListDTO) {
+        return (todoListDTO != null)
+                ? new ResponseEntity<>(todoListServiceImpl.save(todoListDTO), HttpStatus.OK)
                 : new ResponseEntity<>("Cuerpo del todo Incorrecto", HttpStatus.NOT_FOUND);
     }
 
     /**
      * Actualizar un todoList
      *
-     * @param todoList
-     * @return todoList
+     * @param todoListDTO
+     * @return todoListDTO
      */
     @PutMapping("/update")
-    public ResponseEntity<?> update(@RequestBody TodoList todoList) {
-        Optional<TodoList> todoExist = todoListServiceImpl.getId(todoList.getId_groupList());
-        return (todoExist.isPresent())
-                ? new ResponseEntity<>(todoListServiceImpl.update(todoList), HttpStatus.OK)
+    public ResponseEntity<?> update(@RequestBody TodoListDTO todoListDTO) {
+        TodoListDTO todoExist = todoListServiceImpl.getId(todoListDTO.getId_groupList());
+        return (todoExist != null)
+                ? new ResponseEntity<>(todoListServiceImpl.update(todoListDTO), HttpStatus.OK)
                 : new ResponseEntity<>("no existe el todoList", HttpStatus.NOT_FOUND);
     }
 
@@ -76,8 +76,8 @@ public class TodoListController {
      */
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") Long id) {
-        Optional<TodoList> todoExist = todoListServiceImpl.getId(id);
-        return (todoExist.isPresent())
+        TodoListDTO todoExist = todoListServiceImpl.getId(id);
+        return (todoExist != null)
                 ? new ResponseEntity<>(todoListServiceImpl.delete(id), HttpStatus.NO_CONTENT)
                 : new ResponseEntity<>("No existe lo que desea eliminar", HttpStatus.NOT_FOUND);
 
@@ -87,7 +87,7 @@ public class TodoListController {
      * Obtener por id
      *
      * @param id
-     * @return mensaje
+     * @return todoDTO
      */
 
     @GetMapping("/getId/{id}")
