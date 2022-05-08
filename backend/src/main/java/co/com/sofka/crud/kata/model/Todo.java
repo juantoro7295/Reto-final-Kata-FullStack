@@ -1,8 +1,14 @@
 package co.com.sofka.crud.kata.model;
-
 import lombok.*;
-
 import javax.persistence.*;
+
+/**
+ *  Modelo de Todo
+ *
+ * @author Juan Pablo Toro Hurtado.
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 
 @Getter
 @Setter

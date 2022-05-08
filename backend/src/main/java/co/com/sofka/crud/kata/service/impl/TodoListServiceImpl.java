@@ -8,21 +8,50 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/**
+ * Servicios del TodoList
+ *
+ * @author Juan Pablo Toro Hurtado.
+ * @version 1.0.0
+ * @since 1.0.0
+ */
+
 @Service
 public class TodoListServiceImpl implements TodoListService {
+
+    /**
+     * Inyeccion de todoListRespoditory
+     */
     @Autowired
     private TodoListRepository todoListRepository;
 
+    /**
+     * Servicio para listar un TodoLIst
+     *
+     * @return Iterable de TodoList
+     */
     @Override
     public Iterable<TodoList> list() {
         return todoListRepository.findAll();
     }
 
+    /**
+     * Servicio para guardar un TodoList
+     *
+     * @param todoList
+     * @return TodoList
+     */
     @Override
     public TodoList save(TodoList todoList) {
         return todoListRepository.save(todoList);
     }
 
+    /**
+     * Servicio para actualizar un TodoLIst
+     *
+     * @param todoList
+     * @return TodoList
+     */
     @Override
     public TodoList update(TodoList todoList) {
         TodoList todoListIdExist = todoListRepository.findById(todoList.getId_groupList()).orElse(null);
@@ -30,11 +59,24 @@ public class TodoListServiceImpl implements TodoListService {
         return todoListRepository.save(todoListIdExist);
     }
 
+    /**
+     * Servicio para eliminar un TodoList
+     *
+     * @param id
+     * @return mensaje
+     */
     @Override
     public String delete(Long id) {
         todoListRepository.deleteById(id);
         return "";
     }
+
+    /**
+     * Servicio para obtener un TodoList Por id
+     *
+     * @param id
+     * @return TodoLIst
+     */
 
     @Override
     public Optional<TodoList> getId(Long id) {
