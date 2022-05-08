@@ -22,6 +22,8 @@ body{
 
 h1{
   margin: 20px;
+  font-family: 'Tangerine', serif;
+  font-size: 70px;
 }
 
 #inputList{
